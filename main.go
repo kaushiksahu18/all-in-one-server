@@ -133,6 +133,7 @@ func main() {
 		"google.com",
 		"https://todoappdb-kaushiksahu18.onrender.com/",
 		"https://theconnect-fa2u.onrender.com/",
+		"https://all-in-one-server-thud.onrender.com/",
 	}
 
 	monitor := NewWebsiteMonitor(websites)
