@@ -145,7 +145,26 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "HTTP Check Service. Go to /ping for results")
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		fmt.Fprint(w, `
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>HTTP Check Service</title>
+		<style>
+			body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+			h1 { color: #333; }
+			.link { padding: 10px; background-color: #f0f0f0; border-radius: 5px; }
+			a { color: #0066cc; text-decoration: none; }
+			a:hover { text-decoration: underline; }
+		</style>
+	</head>
+	<body>
+		<h1>HTTP Check Service</h1>
+		<p>This service monitors website availability and response times.</p>
+		<p class="link">View monitoring results: <a href="/ping">/ping</a></p>
+	</body>
+	</html>`)
 	})
 
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
